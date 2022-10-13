@@ -3,8 +3,8 @@ class Usuario {
 
         this.nombre = nombre;
         this.apellido = apellido;
-        this.libros = libros;
-        this.mascotas = mascotas;
+        this.libros = [];
+        this.mascotas = [];
     }
 
     getFullName() {
@@ -46,10 +46,8 @@ const usuarioNahuel = new Usuario("Nahuel", "Di Santi", [{
 }], ["perro", "gato"]);
 
 
-console.log(usuarioNahuel.addBookNames("El Desempleo", "Fernando Bogado"))
-console.log(usuarioNahuel.countMascotas());
-console.log(usuarioNahuel.getFullName());
-console.log(usuarioNahuel.addMascotas("loro"));
-console.log(usuarioNahuel.getBooksNames());
-
-console.log(usuarioNahuel);
+usuarioNahuel.addBookNames("El Desempleo", "Fernando Bogado")
+usuarioNahuel.countMascotas()
+usuarioNahuel.getFullName()
+usuarioNahuel.addMascotas("loro")
+usuarioNahuel.getBooksNames()
