@@ -1,39 +1,39 @@
 class Usuario {
-    constructor(nombre, apellido, libros, mascotas) {
+    constructor(name, lastname) {
 
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.libros = [];
-        this.mascotas = [];
+        this.name = name;
+        this.lastname = lastname;
+        this.books = [];
+        this.pets = [];
     }
 
     getFullName() {
-        return `Nombre completo:${nombre} ${apellido}`;
+        return `Nombre completo:${this.name} ${this.lastname}`;
     }
 
-    addMascotas(mascota) {
-        this.mascotas.push(mascota);
-        return mascotas
+    addPets(pet) {
+        this.pet.push(pet);
+        return pet
     }
 
-    countMascotas() {
-        return this.mascotas.length;
+    countPets() {
+        return this.pets.length;
     }
 
-    addBookNames(nombre, autor) {
+    addBookNames(name, author) {
 
-        libroagregar = {
-            "nombre": nombre,
-            "autor": autor
+        const addbook = {
+            name: name,
+            author: author
         };
-        this.libros.push(libroagregar);
-        return this.libros;
+        this.books.push(addbook);
+        return this.books;
     }
 
     getBooksNames() {
-        const nombreslibros = []
-        this.libros.forEach(libro => nombreslibros.push(libro.nombre))
-        return libros
+        const namesbooks = []
+        this.books.forEach(book => namesbooks.push(this.books.name))
+        return namesbooks
     }
 }
 
@@ -47,7 +47,7 @@ const usuarioNahuel = new Usuario("Nahuel", "Di Santi", [{
 
 
 usuarioNahuel.addBookNames("El Desempleo", "Fernando Bogado")
-usuarioNahuel.countMascotas()
-usuarioNahuel.getFullName()
-usuarioNahuel.addMascotas("loro")
-usuarioNahuel.getBooksNames()
+usuarioNahuel.countPets();
+usuarioNahuel.getFullName();
+usuarioNahuel.addPets("loro");
+usuarioNahuel.getBooksNames();
