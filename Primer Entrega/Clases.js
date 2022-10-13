@@ -12,8 +12,8 @@ class Usuario {
     }
 
     addPets(pet) {
-        this.pet.push(pet);
-        return pet
+        this.pets.push(pet);
+        return this.pets
     }
 
     countPets() {
@@ -46,7 +46,7 @@ const usuarioNahuel = new Usuario("Nahuel", "Di Santi", [{
 }], ["perro", "gato"]);
 
 
-usuarioNahuel.addBookNames("El Desempleo", "Fernando Bogado")
+usuarioNahuel.addBookNames("El Desempleo", "Fernando Bogado");
 usuarioNahuel.countPets();
 usuarioNahuel.getFullName();
 usuarioNahuel.addPets("loro");
