@@ -32,7 +32,7 @@ class Usuario {
 
     getBooksNames() {
         const namesbooks = []
-        this.books.forEach(book => namesbooks.push(this.books.name))
+        this.books.forEach(book => namesbooks.push(book.name))
         return namesbooks
     }
 }
