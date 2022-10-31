@@ -1,5 +1,5 @@
 const fs = require('fs');
-const PRODUCTS = './productos.txt'
+const PRODUCTS = './productos.json'
 
 class Contenedor {
 
@@ -9,7 +9,6 @@ class Contenedor {
 
     getAll = () => {
         const items = JSON.parse(fs.readFileSync(this.file, 'utf-8'));
-        console.log(`Estos son todos los articulos encontrados en la lista: ${items}`);
         return items
     }
 
@@ -18,6 +17,13 @@ class Contenedor {
         const foundItem = items.find( i => i.id === id);
         console.log(`Este es el articulo encontrado: ${foundItem}`);
         return foundItem
+    }
+
+    getRandom = () => {
+        const items = this.getAll();
+        const randomObject = items[Math.floor((Math.random() * items.length))];
+        console.log(randomObject)
+        return randomObject
     }
 
     save = (object) => {
@@ -67,11 +73,11 @@ class Contenedor {
 }
 
 //Instancia Contenedor
-const contenedor = new Contenedor(PRODUCTS);
+//const contenedor = new Contenedor(PRODUCTS);
 //Obteniendo producto ID 3
-contenedor.getById(3);
+//contenedor.getById(3);
 //Obteniendo productos originales
-contenedor.getAll();
+//contenedor.getAll();
 //Agregando algunos productos a productos.txt.
 const productoAAgregar = {
     name:"Piedra afliadora",
@@ -79,11 +85,11 @@ const productoAAgregar = {
     thumbnail: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQh1LJUO_93RECipIhwoMxdT0SmY3QL5TNr9a94pXk62T2Wyp_8XN8WhCigLtdRAqoZsq_MqMCZQQ&usqp=CAc",
     id: undefined
 }
-contenedor.save(productoAAgregar);
+//contenedor.save(productoAAgregar);
 //Eliminando producto ID 2
-contenedor.deleteById(2);
+//contenedor.deleteById(2);
 //Eliminando todos los productos
-contenedor.deleteAll()
+//contenedor.deleteAll()
 
 
 module.exports = Contenedor;
