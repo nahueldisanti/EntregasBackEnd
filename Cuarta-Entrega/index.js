@@ -7,15 +7,26 @@ class Contenedor {
         this.file = file;
     }
 
-    getAll = (req, res, next) => {
-        const items = JSON.parse(fs.readFileSync(this.file, 'utf-8'));
-        res.send(items);
+    getAllFront =(req, res, next) => {
+        try{
+            const items = JSON.parse(fs.readFileSync(this.file, 'utf-8'));
+            res.send(items);
+    }   catch(error) {
+        res.send(error)
     }
+
+    getAll = async () => {
+        try{
+            const items = JSON.parse(fs.readFileSync(this.file, 'utf-8'));
+            return items;
+    } catch(error){
+        console.log(error);
+    }}
 
     getById = (req, res, next) => {
         const {id} = req.params
         const items = this.getAll()
-        const foundItem = items.find( i => i.id === id);
+        const foundItem = items.find( i => i.id === parseInt(id));
         console.log(`Este es el articulo encontrado: ${foundItem}`);
         res.send(foundItem);
     }
@@ -27,7 +38,7 @@ class Contenedor {
         res.send(randomObject);
     }
 
-    save = (req, res, next) => {
+    save = async (req, res, next) => {
         try {
             if (fs.existsSync(this.file)) {
                 const data = this.getAll()
@@ -38,7 +49,6 @@ class Contenedor {
                 fs.writeFileSync(this.file, dataJson);
                 console.log(`El articulo ${title} ha sigo agregado con exito con el ID ${lastId}`)
                 res.send(lastId);
-
             } else {
                 object.id = 1
                 const items = [];
@@ -52,7 +62,7 @@ class Contenedor {
         }
     }
 
-    deleteById = (req, res, next) => {
+    deleteById = async (req, res, next) => {
         try{   
             const {id} = req.params;
             const info = this.getAll()
@@ -65,16 +75,16 @@ class Contenedor {
         }
     }
 
-    deleteAll = (req, res, next) => {
+    deleteAll = async () => {
         try{
             fs.writeFileSync(this.file,'');
-            res.send(`Productos eliminados`);
+            console.log('Elementos eliminados');
         }catch(error){
             res.send(error);
         }
     }
     
-    updateItemById = (req, res, next) => {
+    updateItemById = async (req, res, next) => {
         try{
             const items = this.getAll();
             const {id} = req.params;
@@ -96,5 +106,5 @@ class Contenedor {
         }
     }
 
-}
+}}
 module.exports = Contenedor;

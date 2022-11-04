@@ -1,9 +1,9 @@
-
 const express = require('express');
 const Contenedor = require('./index.js');
 const routerProductos = require('./Routes/router.js');
 const app = express();
 const PORT = 8080; 
+
 
 app.listen(PORT, () =>
 
@@ -15,9 +15,7 @@ app.listen(PORT, () =>
         console.log(`Error:${error}.No se pudo levantar el servidor.`)
     }
 });
-app.use(express.json);
+app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.use('/api/productos', routerProductos);
-
-
