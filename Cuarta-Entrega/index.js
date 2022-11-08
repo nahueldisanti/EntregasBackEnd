@@ -13,7 +13,7 @@ class Contenedor {
             res.send(items);
     }   catch(error) {
         res.send(error)
-    }
+    }}
 
     getAll = async () => {
         try{
@@ -89,7 +89,6 @@ class Contenedor {
             const items = this.getAll();
             const {id} = req.params;
             const {title, price, thumbnail} = req.body;
-            const item = this.getById(id);
             const newItem = {
                 title:title,
                 price:price,
@@ -100,11 +99,10 @@ class Contenedor {
             const itemsJson = JSON.stringify(items);
             fs.writeFileSync(this.file, itemsJson);
             res.send(`Producto con id:${id} actualizado correctamente`)
-
         }catch(error){
             res.send(error)
         }
     }
+}
 
-}}
 module.exports = Contenedor;
